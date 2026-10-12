@@ -699,8 +699,8 @@ python -m unittest discover -s tests -t .
 
 ## License and usage
 
-No open-source license file is currently included in this repository. Do not assume that the source or project assets may be redistributed or used commercially without permission. Contact the project owner through GitHub to discuss licensing or commercial use.
+No open-source license file is currently included in this repository. Do not assume that the source or project assets may be redistributed or used commercially without permission. Contact the project owner through samuel.oddoye@icloud.com to discuss licensing or commercial use.
 
 ## Contact
 
-For bug reports, feature suggestions, collaboration, or licensing questions, open an issue in the repository or contact the project owner through GitHub.
+For bug reports, feature suggestions, collaboration, or licensing questions, open an issue in the repository or contact the project owner through samuel.oddoye@icloud.com.
