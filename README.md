@@ -237,7 +237,7 @@ Successful changes trigger refreshes of the relevant tables and summary views. D
 ### Validation rules
 
 - Required form fields must be completed.
-- Dates of birth use `YYYY-MM-DD`. Students must be between 3 and 25 years old; teachers must be between 18 and 100 years old.
+- Dates of birth use `YYYY-MM-DD`. Students must be between 0 and 100 years old; teachers must be between 18 and 100 years old.
 - Phone numbers must contain 10 to 15 digits, optionally prefixed with `+`. Spaces and hyphens are removed when validating.
 - Email addresses must follow a basic `local@domain.suffix` format.
 - Fees and salaries must be numeric, finite, and non-negative.
