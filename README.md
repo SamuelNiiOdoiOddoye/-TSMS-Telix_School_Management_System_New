@@ -237,7 +237,7 @@ Successful changes trigger refreshes of the relevant tables and summary views. D
 ### Validation rules
 
 - Required form fields must be completed.
-- Dates of birth use `YYYY-MM-DD`. Students must be between 3 and 25 years old; teachers must be between 18 and 100 years old.
+- Dates of birth use `YYYY-MM-DD`. Students must be between 0 and 100 years old; teachers must be between 18 and 100 years old.
 - Phone numbers must contain 10 to 15 digits, optionally prefixed with `+`. Spaces and hyphens are removed when validating.
 - Email addresses must follow a basic `local@domain.suffix` format.
 - Fees and salaries must be numeric, finite, and non-negative.
@@ -699,8 +699,8 @@ python -m unittest discover -s tests -t .
 
 ## License and usage
 
-No open-source license file is currently included in this repository. Do not assume that the source or project assets may be redistributed or used commercially without permission. Contact the project owner through GitHub to discuss licensing or commercial use.
+No open-source license file is currently included in this repository. Do not assume that the source or project assets may be redistributed or used commercially without permission. Contact the project owner through samuel.oddoye@icloud.com to discuss licensing or commercial use.
 
 ## Contact
 
-For bug reports, feature suggestions, collaboration, or licensing questions, open an issue in the repository or contact the project owner through GitHub.
+For bug reports, feature suggestions, collaboration, or licensing questions, open an issue in the repository or contact the project owner through samuel.oddoye@icloud.com.

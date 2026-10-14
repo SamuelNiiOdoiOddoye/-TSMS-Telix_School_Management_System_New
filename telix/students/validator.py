@@ -18,8 +18,8 @@ from telix.students.schema import (
     STUDENT_STATUSES,
 )
 
-MINIMUM_STUDENT_AGE = 3
-MAXIMUM_STUDENT_AGE = 25
+MINIMUM_STUDENT_AGE = 0
+MAXIMUM_STUDENT_AGE = 100
 
 
 def prepare_student(values: Mapping[str, object]) -> dict[str, Any]:
