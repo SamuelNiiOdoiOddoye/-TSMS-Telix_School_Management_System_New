@@ -10,6 +10,7 @@ Telix is a local desktop school-management application built with Python and Tki
 - [Authentication and first-run setup](#authentication-and-first-run-setup)
 - [How the application works](#how-the-application-works)
 - [Requirements and installation](#requirements-and-installation)
+- [Session diagnostics and bug reporting](#session-diagnostics-and-bug-reporting)
 - [Run the application](#run-the-application)
 - [Run the tests](#run-the-tests)
 - [Manual desktop acceptance checklist](#manual-desktop-acceptance-checklist)
@@ -206,6 +207,50 @@ academic-period allocations, payment receipts, or audit trail.
 - Emits operational log messages to stderr without writing record values or exception messages to a log file.
 - Includes automated tests for core helpers, validation, storage, record services, financial calculations, and workflows.
 
+## Session diagnostics and bug reporting
+
+**Status: Planned — not yet implemented in the application code.** The following describes the intended user experience and acceptance criteria for a future V1 reliability update. It must not be interpreted as a claim that automatic session logs, crash reports, or a Report a Bug interface are currently available.
+
+### Planned session logging
+
+- Create a session log automatically while the application is running, recording timestamps and useful operational events such as application startup/shutdown, navigation, and relevant failures.
+- Keep diagnostic logs in a user-writable application-data location rather than assuming the repository directory is writable on every operating system.
+- Avoid recording passwords, authentication secrets, student or staff record contents, medical details, or other unnecessary personal data.
+- Use log rotation or bounded file sizes so logs do not grow indefinitely.
+
+### Planned Report a Bug workflow
+
+A future **Report a Bug** action should let the user describe what happened and, where appropriate, include a sanitised diagnostic report. The application should create a uniquely named report under an `issue_log/` directory and show the actual saved path.
+
+Unexpected crashes should produce a diagnostic report when it is safe and technically possible to do so. The report may include the timestamp, TSMS version, Python version, operating system information, a traceback, and relevant sanitised operational events. It must not bundle school-record JSON files or passwords.
+
+### Proposed user-facing message
+
+The following is a design example only; it is not a screenshot of a currently implemented screen:
+
+> **TSMS encountered an unexpected error**
+>
+> TSMS has saved a diagnostic report to help investigate this problem.
+>
+> **Report location**
+>
+> `.../Telix School Management System/issue_log/crash_YYYYMMDD_HHMMSS.txt`
+>
+> Please review the report to ensure it contains no sensitive information, then email it to **samuel.oddoye@icloud.com**.
+
+The actual message should show the real file path for the current operating system and provide an action to open the containing folder or copy the path where practical. The application should not claim that an email has been sent automatically.
+
+### Privacy and failure handling requirements
+
+- Give users a chance to review a report before they share it.
+- Redact or omit secrets and personal/school-record data by design; do not rely on users to notice every sensitive field.
+- Handle failure to write a report gracefully and tell the user when no report could be saved.
+- Keep reports local and do not upload them automatically.
+- Test normal shutdown, handled errors, unexpected callback errors, and fatal startup errors.
+- Exclude generated logs and diagnostic reports from Git so user data cannot accidentally be committed.
+
+Until the feature is implemented and tested, users should follow the manual troubleshooting instructions in [InstallationREADME.md](InstallationREADME.md) and email a sanitised description and traceback to samuel.oddoye@icloud.com. Do not email local school-record JSON files.
+
 ## How the application works
 
 ### Typical workflow
@@ -245,6 +290,9 @@ Successful changes trigger refreshes of the relevant tables and summary views. D
 - Student, teacher, and academic identifiers are compared without regard to case for lookup and duplicate checks.
 
 ## Requirements and installation
+
+For the dedicated setup instructions for Windows, Linux, and macOS, see [InstallationREADME.md](InstallationREADME.md). That guide is intended to be the step-by-step installation reference; this README remains the main overview of the project.
+
 
 - Python 3.10 or later.
 - Tkinter/ttk, normally included with standard Windows and many desktop Python distributions.
