@@ -17,6 +17,10 @@ dev = [
 [tool.setuptools.packages.find]
 include = ["telix*"]
 
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+norecursedirs = ["ai changes", "ai_changes", ".git", ".venv", "venv", "build", "dist"]
+
 [tool.ruff]
 target-version = "py310"
 line-length = 100
