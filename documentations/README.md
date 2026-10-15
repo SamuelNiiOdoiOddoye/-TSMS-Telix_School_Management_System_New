@@ -24,6 +24,8 @@ Telix is a local desktop school-management application built with Python and Tki
 - [Contributing](#contributing)
 - [License and usage](#license-and-usage)
 
+[TSMS Landing Screen](documentations/Screenshots/log_in_screen.png)
+
 ## Current features
 
 ### V1 local accounts and roles
@@ -61,19 +63,23 @@ Telix is a local desktop school-management application built with Python and Tki
   and creates a Teacher account only; account creation is rejected by the
   service when the flag is off.
 
-| V1 role | Current access |
-| --- | --- |
-| `SUPER_ADMIN` | All V1 workflows and records; full V1 account management |
-| `ADMIN` | School operations, academics, attendance, reports, finance, and limited account management |
-| `TEACHER` | Limited student identity/class details, academics, assessments, attendance, and teaching reports; no finance or teacher personnel files |
+| V1 role           | Current access                                                                                                                          |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `SUPER_ADMIN`     | All V1 workflows and records; full V1 account management                                                                                |
+| `ADMIN`           | School operations, academics, attendance, reports, finance, and limited account management                                              |
+| `TEACHER`         | Limited student identity/class details, academics, assessments, attendance, and teaching reports; no finance or teacher personnel files |
 | `FINANCE_OFFICER` | Fee/payment records, expenses, fee-relevant student fields, salary totals, and finance reports; no academic or teacher personal records |
-| `STUDENT` | Own linked student profile fields, academic history, assessments, attendance, and own reports only |
+| `STUDENT`         | Own linked student profile fields, academic history, assessments, attendance, and own reports only                                      |
 
 V1 role enforcement is local application authorization, not hosted identity,
 multi-user coordination, audit logging, or protection from someone with direct
 access to the computer and its JSON files.
 
+[TSMS filled credentials screen](documentations/Screenshots/filled_credentials.png)
+
 ### Dashboard
+
+[TSMS dashboard screen](documentations/Screenshots/dashboard_screenshot.png)
 
 - Displays total and active student counts, teacher count, and attendance percentage.
 - Shows expected fees, receipts, outstanding balance, salaries, other expenses,
@@ -83,6 +89,8 @@ access to the computer and its JSON files.
 - Refreshes the application views after successful record changes.
 
 ### Student records
+
+[TSMS student tab](documentations/Screenshots/students_tab.png)
 
 - Create, view, search, update, and delete student records.
 - Stores Student ID, name, date of birth, class, fees, gender, address, phone, email, medical information, and parent or guardian contact details.
@@ -96,6 +104,8 @@ access to the computer and its JSON files.
 
 ### Teacher records
 
+[TSMS teacher tab](documentations/Screenshots/teachers_tab.png)
+
 - Create, view, search, update, and delete teacher records.
 - Stores Teacher ID, name, date of birth, class or subject, salary, gender, address, phone, email, medical information, and emergency contact.
 - Generates an ID when the ID field is left blank; manually supplied IDs are accepted.
@@ -104,6 +114,8 @@ access to the computer and its JSON files.
 - Requires a selected record before updating. Deletion requires confirmation.
 
 ### Academic records
+
+[TSMS academic records tab](documentations/Screenshots/academic_records_tab.png)
 
 - Create, view, update, and delete a student's score records.
 - Associates each score with an existing student by Student ID.
@@ -115,6 +127,8 @@ access to the computer and its JSON files.
 - Removes a student's linked academic records when that student is deleted.
 
 ### Academic setup and enrollment
+
+[TSMS academic setup and enrollment](documentations/Screenshots/academic_set_up_classes_tab.png)
 
 - Create, view, update, and delete classes, subjects, academic years, and terms
   from the **Academic Setup** tab.
@@ -134,6 +148,8 @@ text values.
 
 ### Assessments and grading
 
+[TSMS assemssments and grading tab](documentations/Screenshots/assessments_tab.png)
+
 - Configure weighted or unweighted grading per academic year, with an optional
   term-specific override.
 - Define assessment components and weights (for example, Coursework 40% and
@@ -148,6 +164,8 @@ Profiles and component scores are stored separately from legacy academic
 records; the existing one-score-per-subject/term/year records remain supported.
 
 ### Attendance
+
+[TSMS attendance tab](documentations/Screenshots/attendance_tab.png)
 
 - Record Present, Absent, Late, or Excused attendance for a student on a date.
 - Attendance is linked to the student's enrollment effective on that date;
@@ -166,6 +184,8 @@ student-status and enrollment lifecycle timeline/report is not yet available.
 
 ### Reports
 
+[TSMS reports tab](documentations/Screenshots/reports_tab_student_details_tab.png)
+
 - Shows student and parent or guardian contact details.
 - Shows teacher contact and emergency-contact details.
 - Shows academic records alongside the student's name and explicitly labels
@@ -182,6 +202,8 @@ student-status and enrollment lifecycle timeline/report is not yet available.
 - Displays a clear empty-state row when a report has no matching records.
 
 ### Finance
+
+[TSMS finance tab](documentations/Screenshots/finance_students_payment_tab.png)
 
 - Records student payments, including partial payments, dates, amounts, and
   optional descriptions.
@@ -243,13 +265,13 @@ The actual message should show the real file path for the current operating syst
 ### Privacy and failure handling requirements
 
 - Give users a chance to review a report before they share it.
-- Redact or omit secrets and personal/school-record data by design; do not rely on users to notice every sensitive field.
+- Redact or omit secrets and personal/school-record data ; rely on users to notice every sensitive field.
 - Handle failure to write a report gracefully and tell the user when no report could be saved.
 - Keep reports local and do not upload them automatically.
 - Test normal shutdown, handled errors, unexpected callback errors, and fatal startup errors.
 - Exclude generated logs and diagnostic reports from Git so user data cannot accidentally be committed.
 
-Until the feature is implemented and tested, users should follow the manual troubleshooting instructions in [InstallationREADME.md](InstallationREADME.md) and email a sanitised description and traceback to samuel.oddoye@icloud.com. Do not email local school-record JSON files.
+Until the feature is implemented and tested, users should follow the manual troubleshooting instructions in [InstallationREADME.md](InstallationREADME.md) and email a sanitized description if you can in the scenario you cannot sanitize just traceback to samuel.oddoye@icloud.com. Do not email local school-record JSON files.
 
 ## How the application works
 
@@ -292,7 +314,6 @@ Successful changes trigger refreshes of the relevant tables and summary views. D
 ## Requirements and installation
 
 For the dedicated setup instructions for Windows, Linux, and macOS, see [InstallationREADME.md](InstallationREADME.md). That guide is intended to be the step-by-step installation reference; this README remains the main overview of the project.
-
 
 - Python 3.10 or later.
 - Tkinter/ttk, normally included with standard Windows and many desktop Python distributions.
@@ -424,23 +445,23 @@ records.
 
 The application reads and writes these files in the project root:
 
-| File | Contents |
-|---|---|
-| `student_records.json` | Student and parent/guardian records |
-| `teacher_records.json` | Teacher records |
-| `academic_records.json` | Student academic records, with managed catalog IDs on newly linked records |
-| `classes.json` | Managed class catalog |
-| `subjects.json` | Managed subject catalog |
-| `academic_years.json` | Academic-year definitions |
-| `terms.json` | Terms linked to academic years |
-| `enrollments.json` | Effective-dated student class enrollments |
-| `teacher_assignments.json` | Teacher, subject, and academic-year assignments |
-| `attendance_records.json` | Student attendance linked to the effective enrollment |
-| `assessment_records.json` | Per-student assessment component scores |
-| `grading_profiles.json` | Grading components, weights, and grade bands |
-| `payments.json` | Student payments and payment descriptions |
-| `expenses.json` | Categorized school expense entries |
-| `users.json` | Local account data; contains salted password hashes |
+| File                       | Contents                                                                   |
+| -------------------------- | -------------------------------------------------------------------------- |
+| `student_records.json`     | Student and parent/guardian records                                        |
+| `teacher_records.json`     | Teacher records                                                            |
+| `academic_records.json`    | Student academic records, with managed catalog IDs on newly linked records |
+| `classes.json`             | Managed class catalog                                                      |
+| `subjects.json`            | Managed subject catalog                                                    |
+| `academic_years.json`      | Academic-year definitions                                                  |
+| `terms.json`               | Terms linked to academic years                                             |
+| `enrollments.json`         | Effective-dated student class enrollments                                  |
+| `teacher_assignments.json` | Teacher, subject, and academic-year assignments                            |
+| `attendance_records.json`  | Student attendance linked to the effective enrollment                      |
+| `assessment_records.json`  | Per-student assessment component scores                                    |
+| `grading_profiles.json`    | Grading components, weights, and grade bands                               |
+| `payments.json`            | Student payments and payment descriptions                                  |
+| `expenses.json`            | Categorized school expense entries                                         |
+| `users.json`               | Local account data; contains salted password hashes                        |
 
 If a file does not exist yet, it is treated as an empty record list. Before overwriting an existing file, the application copies it to the corresponding `*.backup.json` file. Saves are written to a temporary file in the same directory and then replace the main file. A backup is a recovery aid, not a substitute for regular off-device backups.
 
