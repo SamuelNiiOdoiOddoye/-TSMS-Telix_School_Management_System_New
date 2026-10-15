@@ -1,0 +1,5 @@
+# TSMS runtime installation
+# The application currently uses Python's standard library; there are no
+# third-party runtime packages to list separately.
+# Install the local project from the repository root with:
+-e .
