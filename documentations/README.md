@@ -24,7 +24,7 @@ Telix is a local desktop school-management application built with Python and Tki
 - [Contributing](#contributing)
 - [License and usage](#license-and-usage)
 
-[TSMS Landing Screen](documentations/Screenshots/log_in_screen.png)
+![TSMS Landing Screen](documentations/Screenshots/log_in_screen.png)
 
 ## Current features
 
@@ -75,11 +75,11 @@ V1 role enforcement is local application authorization, not hosted identity,
 multi-user coordination, audit logging, or protection from someone with direct
 access to the computer and its JSON files.
 
-[TSMS filled credentials screen](documentations/Screenshots/filled_credentials.png)
+![TSMS filled credentials screen](documentations/Screenshots/filled_credentials.png)
 
 ### Dashboard
 
-[TSMS dashboard screen](documentations/Screenshots/dashboard_screenshot.png)
+![TSMS dashboard screen](documentations/Screenshots/dashboard_screenshot.png)
 
 - Displays total and active student counts, teacher count, and attendance percentage.
 - Shows expected fees, receipts, outstanding balance, salaries, other expenses,
@@ -90,7 +90,7 @@ access to the computer and its JSON files.
 
 ### Student records
 
-[TSMS student tab](documentations/Screenshots/students_tab.png)
+![TSMS student tab](documentations/Screenshots/students_tab.png)
 
 - Create, view, search, update, and delete student records.
 - Stores Student ID, name, date of birth, class, fees, gender, address, phone, email, medical information, and parent or guardian contact details.
@@ -104,7 +104,7 @@ access to the computer and its JSON files.
 
 ### Teacher records
 
-[TSMS teacher tab](documentations/Screenshots/teachers_tab.png)
+![TSMS teacher tab](documentations/Screenshots/teachers_tab.png)
 
 - Create, view, search, update, and delete teacher records.
 - Stores Teacher ID, name, date of birth, class or subject, salary, gender, address, phone, email, medical information, and emergency contact.
@@ -115,7 +115,7 @@ access to the computer and its JSON files.
 
 ### Academic records
 
-[TSMS academic records tab](documentations/Screenshots/academic_records_tab.png)
+![TSMS academic records tab](documentations/Screenshots/academic_records_tab.png)
 
 - Create, view, update, and delete a student's score records.
 - Associates each score with an existing student by Student ID.
@@ -128,7 +128,7 @@ access to the computer and its JSON files.
 
 ### Academic setup and enrollment
 
-[TSMS academic setup and enrollment](documentations/Screenshots/academic_set_up_classes_tab.png)
+![TSMS academic setup and enrollment](documentations/Screenshots/academic_setup_classes_tab.png)
 
 - Create, view, update, and delete classes, subjects, academic years, and terms
   from the **Academic Setup** tab.
@@ -148,7 +148,7 @@ text values.
 
 ### Assessments and grading
 
-[TSMS assemssments and grading tab](documentations/Screenshots/assessments_tab.png)
+![TSMS assemssments and grading tab](documentations/Screenshots/assessments_tab.png)
 
 - Configure weighted or unweighted grading per academic year, with an optional
   term-specific override.
@@ -165,7 +165,7 @@ records; the existing one-score-per-subject/term/year records remain supported.
 
 ### Attendance
 
-[TSMS attendance tab](documentations/Screenshots/attendance_tab.png)
+![TSMS attendance tab](documentations/Screenshots/attendance_tab.png)
 
 - Record Present, Absent, Late, or Excused attendance for a student on a date.
 - Attendance is linked to the student's enrollment effective on that date;
@@ -184,7 +184,7 @@ student-status and enrollment lifecycle timeline/report is not yet available.
 
 ### Reports
 
-[TSMS reports tab](documentations/Screenshots/reports_tab_student_details_tab.png)
+![TSMS reports tab](documentations/Screenshots/reports_tab_student_details_tab.png)
 
 - Shows student and parent or guardian contact details.
 - Shows teacher contact and emergency-contact details.
@@ -203,7 +203,7 @@ student-status and enrollment lifecycle timeline/report is not yet available.
 
 ### Finance
 
-[TSMS finance tab](documentations/Screenshots/finance_students_payment_tab.png)
+![TSMS finance tab](documentations/Screenshots/finance_students_payment_tab.png)
 
 - Records student payments, including partial payments, dates, amounts, and
   optional descriptions.
@@ -231,7 +231,7 @@ academic-period allocations, payment receipts, or audit trail.
 
 ## Session diagnostics and bug reporting
 
-**Status: Planned — not yet implemented in the application code.** The following describes the intended user experience and acceptance criteria for a future V1 reliability update. It must not be interpreted as a claim that automatic session logs, crash reports, or a Report a Bug interface are currently available.
+**Status: Implemented for local desktop diagnostics.** Telix writes a privacy-conscious session log in the user application-data directory and captures unexpected Tkinter or Python exceptions to a local crash report under `issue_log/` so the user can review and share a sanitized file when needed.
 
 ### Planned session logging
 

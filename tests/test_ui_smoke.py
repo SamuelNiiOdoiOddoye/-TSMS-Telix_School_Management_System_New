@@ -1,10 +1,12 @@
 """Headless-safe desktop startup and tab-registration smoke test."""
 
-import tkinter as tk
-from tkinter import ttk
-import secrets
 import os
+import secrets
+import tempfile
+import tkinter as tk
 from collections.abc import Iterator
+from pathlib import Path
+from tkinter import ttk
 from unittest.mock import patch
 
 from telix.authentication.service import AuthenticatedUser, AuthenticationService
@@ -16,7 +18,63 @@ from telix.storage.json_store import JsonStore
 from telix.services.container import Services
 from telix.ui.login import LoginScreen
 from telix.ui.app import ApplicationController, SchoolManagementSystem, TAB_CLASSES
+from telix.ui.window import apply_window_icon
 from tests.support import ServiceTestCase, valid_student, valid_teacher
+
+
+class DummyWindow:
+    def __init__(self) -> None:
+        self.calls: list[tuple[str, object]] = []
+        self._telix_icon_image = None
+
+    def iconphoto(self, *args: object) -> None:
+        self.calls.append(("iconphoto", args[1]))
+
+    def iconbitmap(self, value: str) -> None:
+        self.calls.append(("iconbitmap", value))
+
+
+class WindowIconDiagnosticsTests(ServiceTestCase):
+    def test_apply_window_icon_logs_paths_and_keeps_image_reference(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            tmp_path = Path(tmp_dir)
+            png_path = tmp_path / "telix_image.png"
+            ico_path = tmp_path / "telix_image.ico"
+            png_path.write_bytes(b"fakepng")
+            ico_path.write_bytes(b"\x00\x00\x01\x00\x06\x00\x00\x00\x00\x00\x01\x00 \x00( ")
+            dummy = DummyWindow()
+            with (
+                patch("telix.ui.window.TELIX_ICON_IMAGE_PATH", png_path),
+                patch("telix.ui.window.TELIX_ICON_PATH", ico_path),
+                patch("telix.ui.window.os.name", "nt"),
+                patch("telix.ui.window.tk.PhotoImage", side_effect=lambda *args, **kwargs: object()),
+                self.assertLogs("telix.ui.window", level="INFO") as captured,
+            ):
+                image = apply_window_icon(dummy)
+
+            self.assertIsNotNone(image)
+            self.assertIs(dummy._telix_icon_image, image)
+            self.assertTrue(any("Resolved icon paths" in entry for entry in captured.output))
+            self.assertTrue(any("Applied PNG window icon" in entry for entry in captured.output))
+
+    def test_invalid_ico_logs_warning(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            tmp_path = Path(tmp_dir)
+            png_path = tmp_path / "telix_image.png"
+            ico_path = tmp_path / "telix_image.ico"
+            png_path.write_bytes(b"fakepng")
+            ico_path.write_bytes(b"\x00\x00")
+            dummy = DummyWindow()
+            with (
+                patch("telix.ui.window.TELIX_ICON_IMAGE_PATH", png_path),
+                patch("telix.ui.window.TELIX_ICON_PATH", ico_path),
+                patch("telix.ui.window.os.name", "nt"),
+                patch("telix.ui.window.tk.PhotoImage", side_effect=lambda *args, **kwargs: object()),
+                self.assertLogs("telix.ui.window", level="WARNING") as captured,
+            ):
+                apply_window_icon(dummy)
+
+            self.assertTrue(any("not a valid ICO image" in entry for entry in captured.output))
 
 
 class DesktopStartupSmokeTests(ServiceTestCase):

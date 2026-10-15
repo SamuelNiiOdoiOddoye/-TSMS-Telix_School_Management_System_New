@@ -61,7 +61,9 @@ class SchoolManagementSystem:
         self.master.title("Telix School Management System V1")
         self.master.geometry("1200x780")
         self.master.minsize(1080, 680)
-        self._icon_image = apply_window_icon(master)
+        self._icon_image = (
+            master._telix_icon_image if hasattr(master, "_telix_icon_image") else apply_window_icon(master)
+        )
         configure_style(master)
 
         feedback = Feedback(master)
@@ -189,11 +191,13 @@ class ApplicationController:
 
 
 def main() -> None:
-    from telix.logging_config import configure_logging
+    from telix.logging_config import configure_logging, install_exception_hooks
     from telix.services.container import build_services
 
     configure_logging()
     root = tk.Tk()
+    root._telix_icon_image = apply_window_icon(root)
+    install_exception_hooks(root)
     from telix.authentication.service import AuthenticationService
 
     services = build_services()
