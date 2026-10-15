@@ -177,4 +177,4 @@ Until that feature is implemented, when reporting a problem, include:
 - Expected result and actual result.
 - The full error/traceback, after removing passwords, personal information, and school-record data.
 
-Send the sanitised report to **samuel.oddoye@icloud.com**. Do not send the JSON data files.
+Send the sanitised report to **samuel.oddoye@icloud.com**. It is advised that you do not send the JSON data files, but if you do not have the ability to sanitize the JSON, send it as such and state in the email that it is unsanitized.
