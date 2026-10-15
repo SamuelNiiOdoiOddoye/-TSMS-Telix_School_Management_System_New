@@ -152,9 +152,23 @@ Confirm that you are using a desktop session with a graphical display, that Tkin
 
 V1 is a local desktop application using JSON files. Do not use real school records until the application has been appropriately reviewed for your intended deployment and backup process. Keep data files and backups private. Never attach student records, passwords, or other sensitive information to a bug report.
 
-## 10. Diagnostics and bug reports
+## 10. Planned diagnostics and bug reports
 
-Automatic diagnostic bundles, crash reports, and the proposed `issue_log` workflow are **not claimed to be implemented by this guide**. Their implementation requires changes to the application code and testing on supported operating systems.
+**Status: planned, not yet implemented.** TSMS is intended to gain a Report a Bug action, session-level operational logging, and crash diagnostics saved locally in an `issue_log/` directory. The intended report will contain useful technical context (such as timestamp, app/Python version, operating system, traceback and relevant sanitised events) without bundling school data or passwords. The app should show the real report path and ask the user to review the file before emailing it to **samuel.oddoye@icloud.com**. Reports will not be sent automatically.
+
+The future user-facing message is intended to look like this:
+
+> **TSMS encountered an unexpected error**
+>
+> TSMS has saved a diagnostic report to help investigate this problem.
+>
+> **Report location**
+>
+> `.../Telix School Management System/issue_log/crash_YYYYMMDD_HHMMSS.txt`
+>
+> Please review the report to ensure it contains no sensitive information, then email it to **samuel.oddoye@icloud.com**.
+
+This is a design example, not a currently implemented application screen. Until the feature is built, use the manual steps below:
 
 Until that feature is implemented, when reporting a problem, include:
 - Operating system and version.
