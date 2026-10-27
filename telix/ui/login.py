@@ -8,7 +8,6 @@ from typing import Callable
 
 from telix.authentication.service import AuthenticatedUser, AuthenticationService
 from telix.core.errors import StorageError, ValidationError
-from telix.ui.window import apply_window_icon
 
 
 class LoginScreen:
@@ -23,7 +22,7 @@ class LoginScreen:
         self.on_authenticated = on_authenticated
         self.frame = ttk.Frame(master, padding=28)
         self.frame.pack(expand=True)
-        self._icon_image = apply_window_icon(master)
+        self._icon_image = master._telix_icon_image if hasattr(master, "_telix_icon_image") else None
         self.email = tk.StringVar()
         self.password = tk.StringVar()
         self.message = tk.StringVar()

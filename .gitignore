@@ -16,8 +16,10 @@
 /users.json
 /*.backup.json
 /telix.log
+/issue_log/
 **/*.backup.json
 **/telix.log
+**/issue_log/
 
 # Personal and legacy data files
 /Application Load Files/
