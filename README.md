@@ -773,3 +773,10 @@ No open-source license file is currently included in this repository. Do not ass
 ## Contact
 
 For bug reports, feature suggestions, collaboration, or licensing questions, open an issue in the repository or contact the project owner through samuel.oddoye@icloud.com.
+
+
+## Contributors and acknowledgements
+
+- **Samuel Nii Odoi Oddoye** — Project owner and developer.
+- **Rowena Serwaah Danquah** ([@DSRowena](https://github.com/DSRowena)) — Manual QA testing and feedback.
+
